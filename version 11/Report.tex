@@ -1,0 +1,62 @@
+\documentclass[12pt,twoside,a4paper,fleqn]{report}
+
+\usepackage[english,dt]{ethidsc} % Special IDSC styles and commands      	
+								 % {german}/english: language of headings, etc.
+								 % {st}/bt/mt: {semester}/bachelor/master thesis
+							
+% Page header (don't change)____________________________________________________
+\setlength{\parindent}{0em}                 % Disable parindent
+\rhead[\nouppercase{\rightmark}]{\thepage}  % Special headings
+\lhead[\thepage]{\nouppercase{\leftmark}}   % Special headings
+\cfoot{}                                    % Special headings
+
+\setcounter{secnumdepth}{5}
+
+
+% Title page (please fill in)___________________________________________________
+\title{Simulation of superparamagnetic particle trajectories in a microfluidic device for magnetic separation purposes}
+
+\student{Tim David Grob}
+\college{St. Catherine's College}
+\supervision{Supervisor\\ Prof. Stephen Sheard}
+\date{\today}
+
+
+% Begin document________________________________________________________________
+\begin{document}
+
+ \maketitle 							% Create title page
+
+
+% Preamble______________________________________________________________________
+
+\pagenumbering{roman} 				% Begin roman page numbering (i,ii,...)
+
+\input{chapters/preamble}
+
+% Chapters______________________________________________________________________
+
+\pagestyle{fancy}               	% Fancy headings
+\pagenumbering{arabic}				% Begin arabic page numbering (1,2,...)
+
+\input{chapters/chapter_1_introduction}
+\input{chapters/chapter_2_theory}
+\input{chapters/chapter_3_experiment}
+\input{chapters/chapter_4_magnetophoresis}
+\input{chapters/chapter_5_fluiddynamics}
+\input{chapters/chapter_6_magnet_configurations}
+\input{chapters/chapter_7_magnetic_separation}
+\input{chapters/chapter_8_conclusion_and_summary}
+
+% Bibliography__________________________________________________________________
+% Literature (Additional references can be added to the .bib-file manually, or by using, for example, the free application JabRef). Compile in the following order: latex -bibtex -latex -latex
+
+\bibliographystyle{unsrt}
+%\bibliographystyle{abbrv}
+\bibliography{bibliography}
+
+% Appendix______________________________________________________________________
+\appendix
+\input{chapters/appendix}
+
+\end{document}

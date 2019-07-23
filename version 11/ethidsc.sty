@@ -1,0 +1,182 @@
+%==============================================================================
+% ETHIDSC -- (ethidsc.sty) Style file
+% A LaTeX package providing new style definitions and commands.
+% The ethidsc-package defines a title page and an info page for term papers
+% and master theses written at the Measurement and Control Laboratory
+% of the Swiss Federal Institute of Technology (ETH) Zurich.
+% Author: Eric A. Mueller
+%         Measurement and Control Laboratory
+%         Swiss Federal Institute of Technology (ETH) Zurich
+%         Zurich, Switzerland
+%
+% Copyright (c) 2004 Eric A. Mueller
+% All rights reserved.
+%
+% ethidsc.sty,v.1.0 2009/29/05
+%
+% Revisions: 	2011/03/22  (Soren Ebbesen)
+%               2013/03/08  (Soren Ebbesen)
+%
+%==============================================================================
+\def\Presentation@Version{1.1}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{ethidsc}[2009/29/05, v. \Presentation@Version]
+\typeout{providing new style definitions and commands ---}
+\typeout{Eric Müller, ETHZ, Switzerland, 2004/04/02}
+\typeout{Maintained by Soren Ebbesen, 2009 ---}
+
+\newif\ifingerman
+\DeclareOption{german}{\global\ingermantrue}
+\DeclareOption{english}{\global\ingermanfalse}
+
+\DeclareOption{dt}{\gdef\@type{\ifingerman Doktorarbeit\else Doctor of Philosophy\fi}}
+\DeclareOption{mt}{\gdef\@type{\ifingerman Masterarbeit\else Master Thesis\fi}}
+\DeclareOption{bt}{\gdef\@type{\ifingerman Bachelorarbeit\else Bachelor Thesis\fi}}
+\DeclareOption{st}{\gdef\@type{\ifingerman Semesterarbeit\else Semester Thesis\fi}}
+
+\ExecuteOptions{german,st}
+\ProcessOptions
+
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{etex}
+\RequirePackage{amsmath,amssymb,amsthm,amsfonts}
+\RequirePackage{graphicx}
+\RequirePackage[dvips]{epsfig} 
+\RequirePackage{epstopdf}
+\RequirePackage{float}
+\RequirePackage{fancyhdr}
+%\RequirePackage{hyperref}
+\RequirePackage{pstricks,pst-plot,psfrag}
+\RequirePackage{multirow}
+\RequirePackage{rotating}
+\RequirePackage{mcode}
+\RequirePackage{units}
+\RequirePackage{booktabs}
+\RequirePackage[dvipdfm]{geometry}
+\RequirePackage{url}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{subcaption}
+\RequirePackage{xfrac}
+\RequirePackage{bm}
+\RequirePackage{setspace}
+\RequirePackage{textcomp}
+\RequirePackage{pdfpages}
+\RequirePackage[numbers,sort&compress]{natbib}
+\RequirePackage{tabularx}
+\RequirePackage{makecell}
+\RequirePackage{array}
+\RequirePackage{siunitx}
+\RequirePackage{pdflscape}
+
+
+
+\doublespacing
+%\linespread{1.5}
+%\RequirePackage{subfigure}                      % enable the use of subfigures
+%\usepackage[bf]{caption}                       % must go after subfigure
+
+\ifingerman
+\RequirePackage{german,ae}
+\fi
+
+\newcommand{\@student}{}
+\newcommand{\student}[1]{\gdef\@student{#1}}
+
+\newcommand{\@college}{}
+\newcommand{\college}[1]{\gdef\@college{#1}}
+
+\newcommand{\@supervision}{}
+\newcommand{\supervision}[1]{\gdef\@supervision{#1}}
+
+\newcommand{\etal}{\textit{et al.}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+% check marks
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+% Definition of title page______________________________________________________
+\renewcommand{\maketitle}{
+
+\pagestyle{empty}
+
+\begin{center}
+\hspace{0.02\textwidth}
+\parbox[c][\textheight][t]{0.97\textwidth}{
+\begin{center}
+
+{\Huge \bf \@title \par}
+\vspace{2.0cm} 
+
+\begin{minipage}[c]{\textwidth}
+	\begin{center}
+		\includegraphics[height=5cm]{img/titlePage/ox_logo.png}	
+	\end{center}
+\end{minipage}
+\vspace*{2.0cm}
+
+{\large \@student}\\
+{\large \@college}
+\vspace{1.5cm}
+
+{\large Department of Engineering Science}\\
+{\large University of Oxford}\\
+\vspace{1.0cm}
+
+{\large A thesis submitted for the degree of \textit{Doctor of Philosophy}}
+\vfill
+{\large Trinity Term 2018}
+%\@date
+%\ifingerman
+% {\bf Betreuung} \\[1.5ex]
+%\else
+% {\bf Supervision} \\[1.5ex]
+%\fi
+%\@supervision
+
+\end{center}
+}
+\end{center}
+\cleardoublepage
+}
+
+
+% =======================================
+%	\usepackage[dvipdfm]{geometry}
+	\setlength\paperheight {297mm}%
+	\setlength\paperwidth  {210mm}%
+
+	%PAGE LAYOUT 2cm margin on all four sides
+	\setlength{\voffset}{-1in}
+	\setlength{\hoffset}{-1in}
+
+	\setlength{\oddsidemargin}{3cm}
+	\setlength{\evensidemargin}{3cm}
+
+	\setlength{\topmargin}{2.5cm} % -1in subtract latex default margin (1 inch) from topmargin
+
+%	\setlength{\headheight}{14.mm} %platz für kopfzeile
+%	\setlength{\headsep}{+11.mm} %freiraum nach kopfzeile
+%	\addtolength{\topmargin}{0.0mm} %rest, damit die geforderten 2.5 cm erfüllt werden
+
+	\setlength{\textheight}{229mm} %247mm 29.7cm-5cm = 24.7cm
+
+%	\setlength{\footskip}{+20mm}
+
+	\setlength{\textwidth}{150mm} %!!! %21cm - 5cm = 16cm
+
+
+%	\addtolength{\oddsidemargin}{-1in} %subtract latex default margin (1 inch) from oddsidemargin
+	
+
+%	\addtolength{\evensidemargin}{-1in}  %subtract latex default margin (1 inch) from evensidemargin
+%	\setlength{\marginparwidth}{10cm}
+	\setlength{\parindent}{0pt}
+
+% Revision history___________________________________________________________ 
+% 2009/29/05 Adapted from ethimrt.sty,v 1.1 2004/04/02
